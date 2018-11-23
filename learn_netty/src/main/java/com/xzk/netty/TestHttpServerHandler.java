@@ -21,13 +21,12 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-		System.out.println(msg);
-		ByteBuf context = Unpooled.copiedBuffer("Hello World",CharsetUtil.UTF_8);
-		FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,context);
-		response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
-		response.headers().set(HttpHeaderNames.CONTENT_LENGTH,context.readableBytes());
-		
-		ctx.writeAndFlush(response);
+		System.out.println("msg:"+msg);
+		if(msg instanceof HttpObject) {
+			ByteBuf context = Unpooled.copiedBuffer("Hello World",CharsetUtil.UTF_8);
+			FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,context);
+			response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
+			ctx.writeAndFlush(response);	
+		}
 	}
-
 }
