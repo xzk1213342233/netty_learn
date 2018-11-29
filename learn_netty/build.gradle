@@ -21,8 +21,10 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
-    // https://mvnrepository.com/artifact/io.netty/netty-all
-    compile 'io.netty:netty-all:4.1.10.Final'
+    compile  'io.netty:netty-all:4.1.10.Final'
+    compile  'com.google.protobuf:protobuf-java:3.6.1'
+    compile  'com.google.protobuf:protobuf-java-util:3.6.1'
+    
 }
 
 // In this section you declare where to find the dependencies of your project
